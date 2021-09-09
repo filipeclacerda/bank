@@ -7,14 +7,14 @@ export default function App() {
 
 	return (
 		<SafeAreaView style={styles.container}>
-			<Bank/>
-			
+			<Bank/>			
 		</SafeAreaView>
 	);
 }
 
 const styles = StyleSheet.create({
   container: {
+    paddingTop: 30,
     flex: 1,
     backgroundColor: 'purple',
     alignItems: 'center',

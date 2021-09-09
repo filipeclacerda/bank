@@ -14,7 +14,7 @@ import { Dimensions } from 'react-native';
 export const VerifyFill = createContext();
 
 const Bank = () =>{
-    const [genero, setgenero] = useState('m');
+    const [genero, setgenero] = useState('Masculino');
 	const [estudante, setSwitch] = useState(false);
     const [renda, setRenda] = useState(0);
     const [nome, setNome] = useState(undefined);
@@ -32,8 +32,15 @@ const Bank = () =>{
             showAlert(nome, idade, genero, renda, estudante,false);
         }
     }
+    const handlerResetButton = () =>{
+        setRenda(0);
+        setgenero('Masculino');
+        setSwitch(false);
+        setNome(undefined);
+        setIdade(undefined);
+    }
 
-    return (
+    return (        
         <View style={styles.containerMini}>
             <Text style={styles.titulo}>Cadastro do Banco</Text>
             <VerifyFill.Provider value={{setNome, setIdade}}>
@@ -57,6 +64,7 @@ const Bank = () =>{
                         <Slider
                             style={{width: 330, height: 5, flex: 1}}
                             minimumValue={0}
+                            value={renda}
                             maximumValue={3000}				
                             minimumTrackTintColor="#808080"
                             maximumTrackTintColor="#c9c9c9"
@@ -69,7 +77,7 @@ const Bank = () =>{
                     </View>
                 </View>
                 <CustomButton text="Abrir conta" onPress={() => handlerOpenAccount()}/>
-                <CustomButton text="Resetar" color="#c799ff"/>
+                <CustomButton text="Resetar" color="#c799ff" onPress={() => handlerResetButton()}/>
             </VerifyFill.Provider>
 
         </View>
@@ -97,7 +105,7 @@ const styles = StyleSheet.create({
    
     containerMini:{
       width: windowWidth - 30,  
-      borderRadius: "23px",
+      borderRadius: 23,
       padding: sizes.spacing.xlarge,
       margin: sizes.spacing.xlarge,
       backgroundColor: colors.basic.white,
