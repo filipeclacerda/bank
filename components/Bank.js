@@ -8,6 +8,7 @@ import CustomTextInput from './CustomTextInput';
 import showAlert from './Alert'
 import {sizes} from '../utils/sizes';
 import { colors } from '../utils/colors';
+import { Dimensions } from 'react-native';
 
 
 export const VerifyFill = createContext();
@@ -36,35 +37,36 @@ const Bank = () =>{
         <View style={styles.containerMini}>
             <Text style={styles.titulo}>Cadastro do Banco</Text>
             <VerifyFill.Provider value={{setNome, setIdade}}>
-                <Text style={styles.label}>Nome:</Text>
+                
                 <CustomTextInput label="Nome"/>
-                <Text style={styles.label}>Idade:</Text>
                 <CustomTextInput label="Idade" type="numeric"/>
-                <Text style={styles.label}>Gênero:</Text>
-                <Picker
-                    style={styles.picker}
-                    selectedValue={genero}
-                    onValueChange={(itemValue) =>
-                        setgenero(itemValue)
-                    }>
-                    <Picker.Item label="Masculino" value="Masculino" />
-                    <Picker.Item label="Feminino" value="Feminino" />
-                    <Picker.Item label="Outro" value="Outro" />
-                </Picker>
-                <Text style={styles.label}>Renda Mensal: R$ {renda}</Text>
-                <View style={styles.sliderView}>
-                    <Slider
-                        style={{width: 330, height: 5, flex: 1}}
-                        minimumValue={0}
-                        maximumValue={3000}				
-                        minimumTrackTintColor="#808080"
-                        maximumTrackTintColor="#c9c9c9"
-                        onValueChange={changeRenda}
-                    />
-                </View>
-                <View style={styles.switchView}>
-                    <Text style={styles.label}>Estudante:</Text>
-                    <Switch style={styles.switch} value={estudante} onValueChange={setSwitch}/>
+                <View>
+                    <Text style={styles.label}>Gênero:</Text>
+                    <Picker
+                        style={styles.picker}
+                        selectedValue={genero}
+                        onValueChange={(itemValue) =>
+                            setgenero(itemValue)
+                        }>
+                        <Picker.Item label="Masculino" value="Masculino" />
+                        <Picker.Item label="Feminino" value="Feminino" />
+                        <Picker.Item label="Outro" value="Outro" />
+                    </Picker>                
+                    <Text style={styles.label}>Renda Mensal: R$ {renda}</Text>
+                    <View style={styles.sliderView}>
+                        <Slider
+                            style={{width: 330, height: 5, flex: 1}}
+                            minimumValue={0}
+                            maximumValue={3000}				
+                            minimumTrackTintColor="#808080"
+                            maximumTrackTintColor="#c9c9c9"
+                            onValueChange={changeRenda}
+                        />
+                    </View>
+                    <View style={styles.switchView}>
+                        <Text style={styles.label}>Estudante:</Text>
+                        <Switch style={styles.switch} value={estudante} onValueChange={setSwitch}/>
+                    </View>
                 </View>
                 <CustomButton text="Abrir conta" onPress={() => handlerOpenAccount()}/>
                 <CustomButton text="Resetar" color="#c799ff"/>
@@ -73,7 +75,7 @@ const Bank = () =>{
         </View>
     )
 }
-
+const windowWidth = Dimensions.get('window').width;
 
 const styles = StyleSheet.create({
     titulo: {
@@ -92,8 +94,10 @@ const styles = StyleSheet.create({
         fontSize: sizes.font.medium,
         alignSelf: 'flex-start',
     },
+   
     containerMini:{
-      width: "94%",
+      width: windowWidth - 30,  
+      borderRadius: "23px",
       padding: sizes.spacing.xlarge,
       margin: sizes.spacing.xlarge,
       backgroundColor: colors.basic.white,
