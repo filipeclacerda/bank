@@ -17,8 +17,8 @@ const Bank = () =>{
     const [genero, setgenero] = useState('Masculino');
 	const [estudante, setSwitch] = useState(false);
     const [renda, setRenda] = useState(0);
-    const [nome, setNome] = useState(undefined);
-    const [idade, setIdade] = useState(undefined);
+    const [nome, setNome] = useState('');
+    const [idade, setIdade] = useState('');
  
     const changeRenda = useCallback((renda) => {
         setRenda(Math.floor(renda))
@@ -36,15 +36,14 @@ const Bank = () =>{
         setRenda(0);
         setgenero('Masculino');
         setSwitch(false);
-        setNome(undefined);
-        setIdade(undefined);
+        setNome('');
+        setIdade('');
     }
 
     return (        
         <View style={styles.containerMini}>
-            <Text style={styles.titulo}>Cadastro do Banco</Text>
-            <VerifyFill.Provider value={{setNome, setIdade}}>
-                
+            <Text style={styles.titulo}>Native Bank</Text>
+            <VerifyFill.Provider value={{setNome, setIdade, nome, idade}}>                
                 <CustomTextInput label="Nome"/>
                 <CustomTextInput label="Idade" type="numeric"/>
                 <View>
@@ -65,15 +64,16 @@ const Bank = () =>{
                             style={{width: 330, height: 5, flex: 1}}
                             minimumValue={0}
                             value={renda}
-                            maximumValue={3000}				
-                            minimumTrackTintColor="#808080"
-                            maximumTrackTintColor="#c9c9c9"
+                            maximumValue={3000}	
+                            thumbTintColor={colors.basic.purple}		
+                            minimumTrackTintColor={colors.basic.lightpurple}
+                            maximumTrackTintColor={colors.basic.lightgrey}
                             onValueChange={changeRenda}
                         />
                     </View>
                     <View style={styles.switchView}>
                         <Text style={styles.label}>Estudante:</Text>
-                        <Switch style={styles.switch} value={estudante} onValueChange={setSwitch}/>
+                        <Switch style={styles.switch} value={estudante} color={colors.basic.purple} onValueChange={setSwitch}/>
                     </View>
                 </View>
                 <CustomButton text="Abrir conta" onPress={() => handlerOpenAccount()}/>

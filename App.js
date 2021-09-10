@@ -2,6 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { SafeAreaView, StyleSheet, View } from 'react-native';
 import Bank from './components/Bank'
+import { colors } from './utils/colors';
 
 export default function App() {
 
@@ -16,7 +17,7 @@ const styles = StyleSheet.create({
   container: {
     paddingTop: 30,
     flex: 1,
-    backgroundColor: 'purple',
+    backgroundColor: colors.basic.purple,
     alignItems: 'center',
     justifyContent: 'center',
   }

@@ -6,7 +6,7 @@ import { VerifyFill } from './Bank';
 
 const CustomTextInput = ({label, type}) => {
 
-    const {setNome, setIdade} = useContext(VerifyFill);
+    const {setNome, setIdade, nome, idade} = useContext(VerifyFill);
 
     return (
         <View>
@@ -14,6 +14,7 @@ const CustomTextInput = ({label, type}) => {
             <TextInput
                 style={styles.textInput}
                 label={label}
+                value={(label == "Idade")?idade:nome}
                 mode="outlined"
                 keyboardType={(type)?type:'default'}
                 onChangeText={(label == "Idade")?setIdade:setNome}
